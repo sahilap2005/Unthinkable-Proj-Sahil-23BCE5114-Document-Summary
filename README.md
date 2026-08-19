@@ -3,7 +3,7 @@
 > AI-powered document analysis and summarization for PDF, DOCX, and image files.
 
 ### Live Demo
-**[[https://unthinkable-proj-sahil-23-bce-5114.vercel.app/](https://unthinkable-proj-sahil-23-bce-5114.vercel.app/)](https://unthinkable-proj-sahil-23-bce-5114.vercel.app/)**
+**[[https://unthinkable-proj-sahil-23-bce-5114.vercel.app/](https://unthinkable-proj-sahil-23-bce-5114.vercel.app/)]**
 
 ---
 
