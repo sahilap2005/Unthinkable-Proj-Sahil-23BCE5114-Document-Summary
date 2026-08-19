@@ -1,8 +1,8 @@
-# 📄 Document Summary Assistant
+# Document Summary Assistant
 
 > AI-powered document analysis and summarization for PDF, DOCX, and image files.
 
-### 🚀 Live Demo
+### Live Demo
 **[https://unthinkable-proj-sahil-23-bce-5114-document-summary-5z7x1ybrr.vercel.app/](https://unthinkable-proj-sahil-23-bce-5114-document-summary-5z7x1ybrr.vercel.app/)**
 
 ---
@@ -14,18 +14,18 @@ The Document Summary Assistant is a lightweight web application that allows user
 Modern documents often contain large amounts of information scattered across standard text, scanned pages, tables, and images. Manually reviewing and extracting this data is time-consuming. This project solves this by providing a unified document-processing pipeline that extracts raw text, conditionally applies OCR for image-based content, and relies on a Large Language Model (LLM) to generate structured, easily consumable insights.
 
 ## 3. Key Features
-- **📁 Multi-format Document Upload**: Natively handles PDF, DOCX, PNG, and JPG/JPEG.
-- **🖱️ Drag & Drop**: Seamless upload support via drag-and-drop or standard file picker.
-- **📑 PDF Text Extraction**: Extracts native, selectable text from PDF documents.
-- **🔍 Intelligent OCR**: Applies optical character recognition (OCR) to images, scanned PDF pages, and embedded PDF images.
-- **📄 DOCX Processing**: Parses Microsoft Word documents, preserving paragraphs, headings, and tables.
-- **🤖 AI Summarization**: Integrates with the Google Gemini API for deep contextual understanding.
-- **📏 Configurable Summary Length**: Users can toggle between short, medium, or long summary outputs.
-- **🎯 Key Points & Topics**: Automatically identifies primary topics and extracts the most vital information.
-- **💡 Improvement Suggestions**: Provides document-level feedback and suggestions where applicable.
-- **⏳ Rich Processing States**: Real-time UI feedback mapping the extraction, OCR, and AI generation phases.
-- **⚠️ Error Handling**: Gracefully handles invalid formats, overly large files, extraction failures, and API constraints.
-- **📱 Responsive UI**: Fully responsive interface built with Tailwind CSS.
+- **Multi-format Document Upload**: Natively handles PDF, DOCX, PNG, and JPG/JPEG.
+- **Drag & Drop**: Seamless upload support via drag-and-drop or standard file picker.
+- **PDF Text Extraction**: Extracts native, selectable text from PDF documents.
+- **Intelligent OCR**: Applies optical character recognition (OCR) to images, scanned PDF pages, and embedded PDF images.
+- **DOCX Processing**: Parses Microsoft Word documents, preserving paragraphs, headings, and tables.
+- **AI Summarization**: Integrates with the Google Gemini API for deep contextual understanding.
+- **Configurable Summary Length**: Users can toggle between short, medium, or long summary outputs.
+- **Key Points & Topics**: Automatically identifies primary topics and extracts the most vital information.
+- **Improvement Suggestions**: Provides document-level feedback and suggestions where applicable.
+- **Rich Processing States**: Real-time UI feedback mapping the extraction, OCR, and AI generation phases.
+- **Error Handling**: Gracefully handles invalid formats, overly large files, extraction failures, and API constraints.
+- **Responsive UI**: Fully responsive interface built with Tailwind CSS.
 
 ## 4. Architecture
 
