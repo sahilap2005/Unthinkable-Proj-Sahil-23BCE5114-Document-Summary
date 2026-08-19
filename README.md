@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Document Summary Assistant
 
-## Getting Started
+Turn your documents into clear, useful insights. 
+This application allows users to upload PDF documents or images, extract the text entirely on the client side, and leverage Google Gemini to produce concise, structured summaries.
 
-First, run the development server:
+## Features
+- **Client-Side Processing**: PDF parsing (via PDF.js) and OCR (via Tesseract.js) happen in the browser, ensuring files aren't needlessly sent over the network.
+- **Smart Summaries**: Powered by Gemini API to extract key points, topics, and actionable suggestions.
+- **Adjustable Length**: Choose between Short, Medium, or Long summaries.
+- **Vercel Serverless Ready**: Designed for a seamless, stateless deployment on Vercel.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Architecture
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+\`\`\`text
+Browser (User Upload)
+       ↓
+PDF.js / Tesseract.js (Extracts Text Client-Side)
+       ↓
+Extracted text + Metadata
+       ↓
+Next.js API route (/api/summarize)
+       ↓
+Gemini API (Structured JSON)
+       ↓
+UI (Displays Summary, Key Points, Topics, Suggestions)
+\`\`\`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tech Stack
+- Next.js (App Router)
+- React
+- Tailwind CSS
+- `@google/genai` (Gemini SDK)
+- `pdfjs-dist` (PDF Text Extraction)
+- `tesseract.js` (Image OCR)
+- `zod` (Validation)
+- `lucide-react` (Icons)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Local Setup
 
-## Learn More
+1. Clone the repository:
+   \`\`\`bash
+   git clone https://github.com/sahilap2005/Unthinkable-Proj-Sahil-23BCE5114-Document-Summary.git
+   cd document-summary-assistant
+   \`\`\`
 
-To learn more about Next.js, take a look at the following resources:
+2. Install dependencies:
+   \`\`\`bash
+   npm install
+   \`\`\`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. Configure Environment:
+   Rename \`.env.example\` to \`.env.local\` and add your Gemini API key:
+   \`\`\`env
+   GEMINI_API_KEY=your_actual_key_here
+   \`\`\`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4. Run the development server:
+   \`\`\`bash
+   npm run dev
+   \`\`\`
 
-## Deploy on Vercel
+## Deployment
+This project is built for **Vercel**. Since there's no database or heavy backend required:
+1. Push your code to GitHub.
+2. Import the project into Vercel.
+3. Add the `GEMINI_API_KEY` as an environment variable in the Vercel dashboard.
+4. Deploy!
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Design Decisions
+- **No Database**: To adhere to the lightweight requirement, the app operates statelessly. Documents are parsed and summaries are generated dynamically.
+- **Client-Side Extraction**: Uploading a 10MB PDF to a Vercel serverless function can hit payload limits and increase latency. Processing in the browser solves this efficiently.
+- **Gemini Structured Output**: The API requests JSON schema validation from Gemini to guarantee structured data (Key Points, Topics, Suggestions) for the UI, avoiding fragile text parsing.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Limitations
+- **OCR Speed**: Browser-based OCR (Tesseract.js) can take longer on massive images or complex layouts.
+- **Rate Limits**: The free tier of the Gemini API has request limitations.
+- **Large PDFs**: Extremely large PDFs (e.g., 100+ pages) might consume significant browser memory during extraction.
