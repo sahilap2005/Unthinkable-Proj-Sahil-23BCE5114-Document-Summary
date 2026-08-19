@@ -3,7 +3,7 @@
 > AI-powered document analysis and summarization for PDF, DOCX, and image files.
 
 ### Live Demo
-**[https://unthinkable-proj-sahil-23-bce-5114-document-summary-5z7x1ybrr.vercel.app/](https://unthinkable-proj-sahil-23-bce-5114-document-summary-5z7x1ybrr.vercel.app/)**
+**[https://unthinkable-proj-sahil-23-bce-5114-document-summary-iw8c1xu2h.vercel.app/](https://unthinkable-proj-sahil-23-bce-5114-document-summary-iw8c1xu2h.vercel.app/)**
 
 ---
 
@@ -26,7 +26,433 @@ Modern documents often contain large amounts of information scattered across sta
 - **Rich Processing States**: Real-time UI feedback mapping the extraction, OCR, and AI generation phases.
 - **Error Handling**: Gracefully handles invalid formats, overly large files, extraction failures, and API constraints.
 - **Responsive UI**: Fully responsive interface built with Tailwind CSS.
-
+FINAL REPOSITORY AUDIT AND CLEANUP
+The technical assessment has the following submission requirements:
+Project Structure
+Submit only the basic application with all required assignment/project code files.
+Do NOT include:
+node_modules/
+.env
+.env.local
+.env.* containing secrets
+.next/
+dist/
+out/
+build artifacts
+.vscode/
+.idea/
+temporary/editor-specific files
+OS-specific files such as .DS_Store
+logs
+caches
+temporary files
+The GitHub repository must contain only the files necessary to understand, install, run, build, and deploy the application.
+1. AUDIT THE ENTIRE REPOSITORY
+Before making changes, inspect the complete repository.
+Identify:
+source files
+configuration files
+package files
+dependencies
+build artifacts
+generated files
+editor files
+temporary files
+unnecessary assets
+Do NOT blindly delete files.
+Only remove files that are generated, sensitive, temporary, editor-specific, or unnecessary for the application.
+2. CLEAN THE REPOSITORY
+The final repository should NOT contain:
+node_modules/ .next/ dist/ out/ .env .env.local .env.production .env.development .vscode/ .idea/ .DS_Store *.log coverage/
+Also remove any other generated/cache files that are not required for the project.
+3. UPDATE .gitignore
+Make sure .gitignore properly excludes at minimum:
+node_modules/ .next/ out/ dist/ .env .env.local .env.*.local .vscode/ .idea/ .DS_Store *.log coverage/
+Do NOT remove useful source files merely because they are uncommon.
+4. IMPORTANT — NEVER COMMIT API KEYS
+Verify that no actual Gemini API key exists anywhere in the repository.
+Search the project for:
+GEMINI_API_KEY AIza
+The repository may contain:
+.env.example
+with:
+GEMINI_API_KEY=
+but it must NOT contain the actual key.
+Do NOT put the real key in:
+README
+source code
+configuration files
+screenshots
+comments
+example files
+5. DEPENDENCY AUDIT
+This is especially important.
+The assessment explicitly says:
+No extra modules or package files should be added.
+Therefore, inspect:
+package.json package-lock.json
+and audit EVERY dependency.
+For each package ask:
+Is this actually required by the implemented application?
+Remove unnecessary packages.
+Do NOT install libraries simply because they are convenient if the same functionality can reasonably be implemented using:
+native browser APIs
+existing Next.js functionality
+existing React functionality
+already-installed dependencies
+6. KEEP DEPENDENCIES MINIMAL
+The final project should only contain dependencies genuinely required for the implemented features.
+For example, dependencies may include packages required for:
+Next.js
+React
+PDF extraction
+OCR
+DOCX extraction
+Gemini API
+UI components actually used
+validation actually used
+But do NOT add unnecessary:
+UI libraries
+animation libraries
+state-management libraries
+utility libraries
+backend frameworks
+database clients
+authentication libraries
+analytics libraries
+testing frameworks that are not actually used
+duplicate PDF/OCR libraries
+duplicate validation libraries
+Do NOT add a package merely to solve a trivial problem that can be handled with native TypeScript/JavaScript.
+7. DO NOT BREAK THE APPLICATION
+When removing dependencies:
+Search the entire codebase for imports.
+Confirm the package is genuinely unused.
+Remove unused imports.
+Run the application.
+Run lint.
+Run the production build.
+Do NOT remove a package if it is required indirectly by the current implementation.
+8. PACKAGE FILES
+The repository should retain only the package-management files required by the chosen package manager.
+For npm, this normally means:
+package.json package-lock.json
+Do NOT create additional package files such as:
+yarn.lock pnpm-lock.yaml bun.lockb
+unless the project is actually using that package manager.
+Use one package manager consistently.
+9. CHECK FOR UNUSED CODE
+Also audit the source code for:
+unused components
+abandoned experimental files
+duplicate utilities
+old API routes
+unused hooks
+unused CSS
+old test/demo pages
+mock data
+placeholder components
+commented-out implementations
+temporary debugging code
+Remove unnecessary dead code where it is safe to do so.
+Do NOT remove useful documentation or architecture files.
+10. CHECK PUBLIC ASSETS
+Inspect public/.
+Remove:
+unused images
+temporary screenshots
+generated assets
+placeholder files
+unused icons
+Keep only assets actually used by the application.
+11. README MUST REMAIN
+Keep:
+README.md
+The README should accurately document:
+project overview
+live demo
+features
+architecture
+tech stack
+setup
+environment variables
+Vercel deployment
+limitations
+project structure
+The live demo must remain at the top:
+[https://unthinkable-proj-sahil-23-bce-5114-document-summary-5z7x1ybrr.vercel.app/](https://unthinkable-proj-sahil-23-bce-5114-document-summary-5z7x1ybrr.vercel.app/)
+12. KEEP .env.example
+If required, keep:
+.env.example
+containing only:
+GEMINI_API_KEY=
+This is documentation/configuration guidance and does NOT contain a secret.
+13. VERIFY THE FINAL PROJECT
+After cleanup, run:
+npm install npm run lint npm run build
+Fix any problems caused by the cleanup.
+Then verify the application still supports:
+PDF upload
+PDF native text extraction
+PDF image/scanned OCR
+DOCX upload
+DOCX text extraction
+image upload
+image OCR
+Short summary
+Medium summary
+Long summary
+key points
+important topics
+improvement suggestions
+loading states
+error handling
+responsive UI
+Gemini API integration
+Do NOT remove functionality just to reduce dependency count.
+14. FINAL GIT STATUS
+Run:
+git status
+and inspect the result.
+The repository should NOT contain:
+node_modules .next .env .env.local dist out .vscode .idea .DS_Store
+or other generated/temporary files.
+15. FINAL FILE STRUCTURE
+The final repository should look approximately like:
+document-summary-assistant/ │ ├── app/ ├── components/ ├── lib/ ├── types/ ├── public/ │ ├── .gitignore ├── .env.example ├── README.md ├── APPROACH.md ├── package.json ├── package-lock.json ├── next.config.* ├── tsconfig.json ├── postcss.config.* ├── eslint.config.* └── other required configuration files
+The exact structure should reflect the actual project.
+Do NOT create unnecessary files simply to match this example.
+16. IMPORTANT — DO NOT PUSH YET
+Do NOT push changes to GitHub automatically unless explicitly instructed.
+First finish the cleanup and report:
+Dependency audit
+List:
+Removed: - package X — reason - package Y — reason Kept: - package A — reason - package B — reason
+Removed files
+List the generated/unnecessary files removed.
+Final validation
+Report:
+npm run lint → PASS/FAIL npm run build → PASS/FAIL
+Security check
+Confirm:
+API key found in repository → YES/NO .env.local tracked → YES/NO node_modules tracked → YES/NO .next tracked → YES/NO
+Final repository status
+Confirm that the repository is clean and suitable for submission.
+Do not make unnecessary architectural changes.
+The goal is a minimal, clean, production-ready assessment repository containing only the code and configuration required to run and deploy the application.FINAL REPOSITORY AUDIT AND CLEANUP
+The technical assessment has the following submission requirements:
+Project Structure
+Submit only the basic application with all required assignment/project code files.
+Do NOT include:
+node_modules/
+.env
+.env.local
+.env.* containing secrets
+.next/
+dist/
+out/
+build artifacts
+.vscode/
+.idea/
+temporary/editor-specific files
+OS-specific files such as .DS_Store
+logs
+caches
+temporary files
+The GitHub repository must contain only the files necessary to understand, install, run, build, and deploy the application.
+1. AUDIT THE ENTIRE REPOSITORY
+Before making changes, inspect the complete repository.
+Identify:
+source files
+configuration files
+package files
+dependencies
+build artifacts
+generated files
+editor files
+temporary files
+unnecessary assets
+Do NOT blindly delete files.
+Only remove files that are generated, sensitive, temporary, editor-specific, or unnecessary for the application.
+2. CLEAN THE REPOSITORY
+The final repository should NOT contain:
+node_modules/ .next/ dist/ out/ .env .env.local .env.production .env.development .vscode/ .idea/ .DS_Store *.log coverage/
+Also remove any other generated/cache files that are not required for the project.
+3. UPDATE .gitignore
+Make sure .gitignore properly excludes at minimum:
+node_modules/ .next/ out/ dist/ .env .env.local .env.*.local .vscode/ .idea/ .DS_Store *.log coverage/
+Do NOT remove useful source files merely because they are uncommon.
+4. IMPORTANT — NEVER COMMIT API KEYS
+Verify that no actual Gemini API key exists anywhere in the repository.
+Search the project for:
+GEMINI_API_KEY AIza
+The repository may contain:
+.env.example
+with:
+GEMINI_API_KEY=
+but it must NOT contain the actual key.
+Do NOT put the real key in:
+README
+source code
+configuration files
+screenshots
+comments
+example files
+5. DEPENDENCY AUDIT
+This is especially important.
+The assessment explicitly says:
+No extra modules or package files should be added.
+Therefore, inspect:
+package.json package-lock.json
+and audit EVERY dependency.
+For each package ask:
+Is this actually required by the implemented application?
+Remove unnecessary packages.
+Do NOT install libraries simply because they are convenient if the same functionality can reasonably be implemented using:
+native browser APIs
+existing Next.js functionality
+existing React functionality
+already-installed dependencies
+6. KEEP DEPENDENCIES MINIMAL
+The final project should only contain dependencies genuinely required for the implemented features.
+For example, dependencies may include packages required for:
+Next.js
+React
+PDF extraction
+OCR
+DOCX extraction
+Gemini API
+UI components actually used
+validation actually used
+But do NOT add unnecessary:
+UI libraries
+animation libraries
+state-management libraries
+utility libraries
+backend frameworks
+database clients
+authentication libraries
+analytics libraries
+testing frameworks that are not actually used
+duplicate PDF/OCR libraries
+duplicate validation libraries
+Do NOT add a package merely to solve a trivial problem that can be handled with native TypeScript/JavaScript.
+7. DO NOT BREAK THE APPLICATION
+When removing dependencies:
+Search the entire codebase for imports.
+Confirm the package is genuinely unused.
+Remove unused imports.
+Run the application.
+Run lint.
+Run the production build.
+Do NOT remove a package if it is required indirectly by the current implementation.
+8. PACKAGE FILES
+The repository should retain only the package-management files required by the chosen package manager.
+For npm, this normally means:
+package.json package-lock.json
+Do NOT create additional package files such as:
+yarn.lock pnpm-lock.yaml bun.lockb
+unless the project is actually using that package manager.
+Use one package manager consistently.
+9. CHECK FOR UNUSED CODE
+Also audit the source code for:
+unused components
+abandoned experimental files
+duplicate utilities
+old API routes
+unused hooks
+unused CSS
+old test/demo pages
+mock data
+placeholder components
+commented-out implementations
+temporary debugging code
+Remove unnecessary dead code where it is safe to do so.
+Do NOT remove useful documentation or architecture files.
+10. CHECK PUBLIC ASSETS
+Inspect public/.
+Remove:
+unused images
+temporary screenshots
+generated assets
+placeholder files
+unused icons
+Keep only assets actually used by the application.
+11. README MUST REMAIN
+Keep:
+README.md
+The README should accurately document:
+project overview
+live demo
+features
+architecture
+tech stack
+setup
+environment variables
+Vercel deployment
+limitations
+project structure
+The live demo must remain at the top:
+[https://unthinkable-proj-sahil-23-bce-5114-document-summary-5z7x1ybrr.vercel.app/](https://unthinkable-proj-sahil-23-bce-5114-document-summary-5z7x1ybrr.vercel.app/)
+12. KEEP .env.example
+If required, keep:
+.env.example
+containing only:
+GEMINI_API_KEY=
+This is documentation/configuration guidance and does NOT contain a secret.
+13. VERIFY THE FINAL PROJECT
+After cleanup, run:
+npm install npm run lint npm run build
+Fix any problems caused by the cleanup.
+Then verify the application still supports:
+PDF upload
+PDF native text extraction
+PDF image/scanned OCR
+DOCX upload
+DOCX text extraction
+image upload
+image OCR
+Short summary
+Medium summary
+Long summary
+key points
+important topics
+improvement suggestions
+loading states
+error handling
+responsive UI
+Gemini API integration
+Do NOT remove functionality just to reduce dependency count.
+14. FINAL GIT STATUS
+Run:
+git status
+and inspect the result.
+The repository should NOT contain:
+node_modules .next .env .env.local dist out .vscode .idea .DS_Store
+or other generated/temporary files.
+15. FINAL FILE STRUCTURE
+The final repository should look approximately like:
+document-summary-assistant/ │ ├── app/ ├── components/ ├── lib/ ├── types/ ├── public/ │ ├── .gitignore ├── .env.example ├── README.md ├── APPROACH.md ├── package.json ├── package-lock.json ├── next.config.* ├── tsconfig.json ├── postcss.config.* ├── eslint.config.* └── other required configuration files
+The exact structure should reflect the actual project.
+Do NOT create unnecessary files simply to match this example.
+16. IMPORTANT — DO NOT PUSH YET
+Do NOT push changes to GitHub automatically unless explicitly instructed.
+First finish the cleanup and report:
+Dependency audit
+List:
+Removed: - package X — reason - package Y — reason Kept: - package A — reason - package B — reason
+Removed files
+List the generated/unnecessary files removed.
+Final validation
+Report:
+npm run lint → PASS/FAIL npm run build → PASS/FAIL
+Security check
+Confirm:
+API key found in repository → YES/NO .env.local tracked → YES/NO node_modules tracked → YES/NO .next tracked → YES/NO
+Final repository status
+Confirm that the repository is clean and suitable for submission.
+Do not make unnecessary architectural changes.
+The goal is a minimal, clean, production-ready assessment repository containing only the code and configuration required to run and deploy the application.
 ## 4. Architecture
 
 ```mermaid
