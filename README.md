@@ -1,17 +1,25 @@
 # Document Summary Assistant
 
-Turn your documents into clear, useful insights. 
-This application allows users to upload PDF documents or images, extract the text entirely on the client side, and leverage Google Gemini to produce concise, structured summaries.
+Turn your documents into clear, useful insights.
 
 ## Features
-- **Client-Side Processing**: PDF parsing (via PDF.js) and OCR (via Tesseract.js) happen in the browser, ensuring files aren't needlessly sent over the network.
-- **Smart Summaries**: Powered by Gemini API to extract key points, topics, and actionable suggestions.
-- **Adjustable Length**: Choose between Short, Medium, or Long summaries.
-- **Vercel Serverless Ready**: Designed for a seamless, stateless deployment on Vercel.
+
+- **Multi-format Support**: Extract text and insights from:
+  - PDF Documents (Native text & scanned/embedded images via OCR)
+  - Microsoft Word Documents (.docx)
+  - Images (PNG, JPG, JPEG)
+- **Hybrid PDF Processing**: Automatically detects images embedded in PDFs and runs client-side OCR (Tesseract.js) to ensure no text is missed.
+- **Client-Side Extraction**: All document parsing (PDF.js, Mammoth.js, Tesseract.js) happens in the browser, ensuring your files never leave your device for extraction.
+- **AI-Powered Summaries**: Utilizes Google's Gemini API to generate accurate, context-aware summaries.
+- **Customizable Length**: Choose between short (bullet points), medium (executive summary), or long (detailed analysis) formats.
+- **Privacy-First Design**: Only the extracted raw text is sent to the AI model, never the original file.
+
+### Note on Word Documents
+Microsoft Word (.docx) support uses `mammoth.js` to reliably extract text, paragraphs, lists, and tables. To maintain browser performance and stability, images embedded within `.docx` files are not currently OCR'd. For complex image-heavy documents, PDF format is recommended.
 
 ## Architecture
 
-\`\`\`text
+```text
 Browser (User Upload)
        ↓
 PDF.js / Tesseract.js (Extracts Text Client-Side)

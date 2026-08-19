@@ -41,23 +41,14 @@ export default function Home() {
       setStage('extracting');
       
       let extractedText = '';
-      // 1. Text Extraction
-      if (file.type === 'application/pdf') {
-        setProgressText('Reading PDF...');
-        const { extractTextFromPDF } = await import('@/lib/pdf');
-        const pdfResult = await extractTextFromPDF(file, setProgressText);
-        
-        if (pdfResult.isScanned) {
-          // Fallback to OCR? The prompt says "Then offer/use OCR fallback."
-          setFileMeta(prev => ({ ...prev, isScanned: true }));
-        }
-        
-        extractedText = pdfResult.text;
-      } else if (file.type.startsWith('image/')) {
-        setStage('ocr');
-        const { extractTextFromImage } = await import('@/lib/ocr');
-        extractedText = await extractTextFromImage(file, setProgressText);
-      }
+      const { extractDocument } = await import('@/lib/document');
+      const docResult = await extractDocument(file, setProgressText);
+      
+      extractedText = docResult.text;
+      setFileMeta(prev => ({ 
+        ...prev, 
+        isScanned: docResult.metadata?.isScanned 
+      }));
 
       if (!extractedText || extractedText.trim().length < 10) {
         throw new Error('Unable to extract meaningful text from this document. It might be empty or unreadable.');
@@ -94,14 +85,27 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto flex flex-col items-center">
+    <main className="relative min-h-screen py-12 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto flex flex-col items-center">
+      
+      {/* Decorative Dynamic Background */}
+      <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] rounded-full bg-indigo-500/20 dark:bg-indigo-600/15 blur-[120px] mix-blend-multiply dark:mix-blend-screen" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-purple-500/20 dark:bg-fuchsia-600/10 blur-[120px] mix-blend-multiply dark:mix-blend-screen" />
+        <div className="absolute top-[30%] right-[10%] w-[30vw] h-[30vw] rounded-full bg-blue-500/15 dark:bg-blue-600/10 blur-[100px] mix-blend-multiply dark:mix-blend-screen" />
+      </div>
+
       {/* Header */}
-      <div className="text-center mb-10 w-full">
-        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-900 dark:text-white mb-3">
-          Document Summary Assistant
-        </h1>
-        <p className="text-lg text-neutral-600 dark:text-neutral-400">
-          Turn documents into clear, useful insights.
+      <div className="w-full max-w-2xl mx-auto mb-12 flex flex-col items-start border-b border-slate-200/50 dark:border-white/5 pb-6">
+        <div className="flex items-center gap-3 mb-2">
+          <div className="w-9 h-9 rounded-xl flex items-center justify-center bg-indigo-600 dark:bg-indigo-500 text-white shadow-lg shadow-indigo-500/20">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          </div>
+          <h1 className="text-3xl font-semibold tracking-tight text-slate-900 dark:text-white">
+            Briefnet
+          </h1>
+        </div>
+        <p className="text-sm text-neutral-500 dark:text-neutral-400">
+          Extract clear, actionable insights from your documents in seconds.
         </p>
       </div>
 

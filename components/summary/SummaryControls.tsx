@@ -22,8 +22,8 @@ export default function SummaryControls({
   ];
 
   return (
-    <div className="w-full max-w-2xl mx-auto mt-6 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl p-6 shadow-sm">
-      <h3 className="text-sm font-semibold text-neutral-800 dark:text-neutral-200 mb-4 uppercase tracking-wider">
+    <div className="w-full max-w-2xl mx-auto mt-6 bg-white/70 dark:bg-white/5 backdrop-blur-xl border border-slate-200/50 dark:border-white/10 rounded-2xl p-6 shadow-sm">
+      <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-200 mb-4 uppercase tracking-wider">
         Summary Length
       </h3>
       

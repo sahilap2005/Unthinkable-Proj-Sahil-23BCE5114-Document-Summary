@@ -5,8 +5,8 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Document Summary Assistant',
-  description: 'Turn documents into clear, useful insights.',
+  title: 'Briefnet',
+  description: 'Extract clear, actionable insights from any document.',
 };
 
 export default function RootLayout({
@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="h-full antialiased">
-      <body className={`${inter.className} min-h-full flex flex-col bg-neutral-50 dark:bg-neutral-950`}>
+      <body className={`${inter.className} min-h-full flex flex-col bg-slate-50 dark:bg-[#0a0a0f] text-slate-900 dark:text-slate-100 selection:bg-indigo-500/30 transition-colors duration-500`}>
         {children}
       </body>
     </html>

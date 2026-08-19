@@ -15,7 +15,7 @@ export default function ProcessingState({ stage, progressText }: ProcessingState
 
   const stages = [
     { id: 'uploading', label: 'File uploaded' },
-    { id: 'extracting', label: 'Extracting document text', fallbackLabel: 'Performing OCR' },
+    { id: 'extracting', label: 'Extracting document text', fallbackLabel: 'Reading text from images (OCR)' },
     { id: 'analyzing', label: 'Analyzing content & generating summary' },
   ];
 

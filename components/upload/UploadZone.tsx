@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { Upload, FileType, FileText, FileImage } from 'lucide-react';
 import { CONFIG } from '@/lib/config';
 
@@ -15,8 +15,8 @@ export default function UploadZone({ onFileSelect, isLoading }: UploadZoneProps)
   const validateAndProcessFile = (file: File) => {
     setError(null);
 
-    if (!CONFIG.SUPPORTED_TYPES.includes(file.type)) {
-      setError('Please upload a PDF, PNG, or JPG file.');
+    if (!CONFIG.SUPPORTED_TYPES.includes(file.type) && !file.name.endsWith('.docx')) {
+      setError('Please upload a PDF, DOCX, PNG, or JPG file.');
       return;
     }
 
@@ -28,19 +28,19 @@ export default function UploadZone({ onFileSelect, isLoading }: UploadZoneProps)
     onFileSelect(file);
   };
 
-  const handleDragOver = useCallback((e: React.DragEvent) => {
+  const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
     if (!isLoading) setIsDragging(true);
-  }, [isLoading]);
+  };
 
-  const handleDragLeave = useCallback((e: React.DragEvent) => {
+  const handleDragLeave = (e: React.DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
     setIsDragging(false);
-  }, []);
+  };
 
-  const handleDrop = useCallback((e: React.DragEvent) => {
+  const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
     setIsDragging(false);
@@ -51,7 +51,7 @@ export default function UploadZone({ onFileSelect, isLoading }: UploadZoneProps)
       const file = e.dataTransfer.files[0];
       validateAndProcessFile(file);
     }
-  }, [isLoading]);
+  };
 
   const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -63,8 +63,8 @@ export default function UploadZone({ onFileSelect, isLoading }: UploadZoneProps)
   return (
     <div className="w-full max-w-2xl mx-auto mt-8">
       <div
-        className={`relative border-2 border-dashed rounded-xl p-12 transition-all duration-200 ease-in-out text-center cursor-pointer
-          ${isDragging ? 'border-blue-500 bg-blue-50/50 dark:bg-blue-900/20' : 'border-neutral-300 dark:border-neutral-700 hover:border-blue-400 hover:bg-neutral-50 dark:hover:bg-neutral-800/50'}
+        className={`relative border-2 border-dashed rounded-2xl p-12 transition-all duration-300 ease-in-out text-center cursor-pointer overflow-hidden backdrop-blur-sm
+          ${isDragging ? 'border-indigo-500 bg-indigo-50/50 dark:bg-indigo-500/10' : 'border-slate-300 dark:border-white/10 hover:border-indigo-400 dark:hover:border-indigo-500/50 hover:bg-white/50 dark:hover:bg-white/5 bg-white/40 dark:bg-white/5'}
           ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}
         `}
         onDragOver={handleDragOver}
@@ -76,7 +76,7 @@ export default function UploadZone({ onFileSelect, isLoading }: UploadZoneProps)
           type="file"
           ref={fileInputRef}
           onChange={handleFileInput}
-          accept=".pdf,.png,.jpg,.jpeg"
+          accept=".pdf,.docx,.png,.jpg,.jpeg"
           className="hidden"
           disabled={isLoading}
         />
@@ -95,16 +95,20 @@ export default function UploadZone({ onFileSelect, isLoading }: UploadZoneProps)
             </p>
           </div>
 
-          <div className="flex items-center space-x-4 mt-6 pt-6 border-t border-neutral-200 dark:border-neutral-800">
-            <div className="flex items-center text-xs text-neutral-500 dark:text-neutral-400">
+          <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-2 mt-6 pt-6 border-t border-slate-200 dark:border-white/10">
+            <div className="flex items-center text-xs text-slate-500 dark:text-slate-400">
               <FileText size={14} className="mr-1.5" /> PDF
             </div>
-            <div className="w-1 h-1 rounded-full bg-neutral-300 dark:bg-neutral-700" />
-            <div className="flex items-center text-xs text-neutral-500 dark:text-neutral-400">
+            <div className="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-600 hidden sm:block" />
+            <div className="flex items-center text-xs text-slate-500 dark:text-slate-400">
+              <FileType size={14} className="mr-1.5" /> DOCX
+            </div>
+            <div className="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-600 hidden sm:block" />
+            <div className="flex items-center text-xs text-slate-500 dark:text-slate-400">
               <FileImage size={14} className="mr-1.5" /> PNG, JPG
             </div>
-            <div className="w-1 h-1 rounded-full bg-neutral-300 dark:bg-neutral-700" />
-            <div className="flex items-center text-xs text-neutral-500 dark:text-neutral-400">
+            <div className="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-600 hidden sm:block" />
+            <div className="flex items-center text-xs text-slate-500 dark:text-slate-400">
               Up to {CONFIG.MAX_FILE_SIZE_MB}MB
             </div>
           </div>
